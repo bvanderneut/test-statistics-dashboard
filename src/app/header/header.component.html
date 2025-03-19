@@ -1,0 +1,17 @@
+<select name="testType" id="testType" (change)="onTestTypeChange($event)">
+	<option value="0"> - Type - </option>
+	@for (type of testTypes; track type) {
+	<option [value]="type.id">
+		{{type.name}}
+	</option>
+	}
+</select>
+
+<select name="products" id="products" (change)="onProductChange($event)">
+	<option value="0"> - Product - </option>
+	@for (product of products; track product.id) {
+	<option [value]="product.id">
+		{{product.name}}
+	</option>
+	}
+</select>

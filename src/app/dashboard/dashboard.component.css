@@ -1,0 +1,16 @@
+#chart {
+  height: 10rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid #76737a;
+  width: 400px;
+}
+
+#chart div {
+  flex: 1;
+  background: linear-gradient(to bottom, #36166f, #ca19a4);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}

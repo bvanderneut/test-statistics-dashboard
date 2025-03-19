@@ -1,0 +1,13 @@
+@if(totalAmount() !== 0) {
+<p>Total amount</p>
+<p>{{ totalAmount() }}</p>
+
+<div id="chart">
+	@for (dataPoint of testData(); track dataPoint.id) {
+	<div [style.height]="(dataPoint.testAmount / maxAmountOfTests()) * 100 + '%'"
+		[title]="(dataPoint.name) +' '+ (dataPoint.testAmount)"></div>
+	}
+</div>
+
+<!-- <p>{{ testData()| json }}</p> -->
+}
