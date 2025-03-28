@@ -1,9 +1,18 @@
 @if(totalAmountOfTests() !== 0) {
 <p>Total amount: {{ totalAmountOfTests() }}</p>
+
+@if(amountOfApiTests() !== 0) {
 <p>Amount of API: {{ amountOfApiTests() }}</p>
+}
+@if(amountOfAccessibilityTests() !== 0) {
 <p>Amount of accessibility: {{ amountOfAccessibilityTests() }}</p>
+}
+@if(amountOfE2ETests() !== 0) {
 <p>Amount of E2E: {{ amountOfE2ETests() }}</p>
+}
+@if(amountOfUiTests() !== 0) {
 <p>Amount of UI: {{ amountOfUiTests() }}</p>
+}
 
 @if((productId() ?? 0) > 0) {
 <div id="chart">

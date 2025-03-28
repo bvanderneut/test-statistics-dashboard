@@ -81,17 +81,17 @@ export class TestResultsService {
     {
       id: 1,
       name: 'Car',
-      totalAmountOfTests: 0,
+      totalAmountOfTests: 10,
     },
     {
       id: 2,
       name: 'Health',
-      totalAmountOfTests: 0,
+      totalAmountOfTests: 20,
     },
     {
       id: 3,
       name: 'My Independer',
-      totalAmountOfTests: 0,
+      totalAmountOfTests: 30,
     },
   ];
 
@@ -190,7 +190,7 @@ export class TestResultsService {
       // Reset the data because nothing has been selected for test type
       this.state = signal(initialState);
       this.totalAmountOfTests = computed(() => this.state().totalAmountOfTests);
-      this.getProducts(testTypeId);
+      this.getProducts(0);
     }
   }
 
