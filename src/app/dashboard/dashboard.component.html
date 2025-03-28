@@ -1,5 +1,10 @@
 @if(totalAmountOfTests() !== 0) {
-<p>Total amount: {{ totalAmountOfTests() }}</p>
+<p>Total amount of tests: {{ totalAmountOfTests() }}</p>
+<p>Max amount of tests: {{ maxAmountOfTests() }}</p>
+
+@if(jestNotRunAmount() !== 0) {
+<p>Jest not run amount: {{ jestNotRunAmount() }}</p>
+}
 
 @if(amountOfApiTests() !== 0) {
 <p>Amount of API: {{ amountOfApiTests() }}</p>
@@ -14,7 +19,8 @@
 <p>Amount of UI: {{ amountOfUiTests() }}</p>
 }
 
-@if((productId() ?? 0) > 0) {
+<!-- Playwright specific html -->
+@if(convertStringToNumber(testTypeId()) === 1 && ((productId() ?? 0) > 0)) {
 <div id="chart">
 
 	<div [style.height]="(amountOfApiTests() / maxAmountOfTests()) * 100 + '%'" class="api"
@@ -28,7 +34,20 @@
 		[title]="'Amount of UI tests '+ amountOfUiTests()"></div>
 
 </div>
-} @else {
+} @else if(convertStringToNumber(testTypeId()) === 2 && (productId() ?? 0) > 0) {
+<!-- Jest specif html -->
+<div id="chart">
+	<div [style.height]="((totalAmountOfTests() - (jestNotRunAmount() ?? 0)) / maxAmountOfTests()) * 100 + '%'"
+		class="api" [title]="'Amount of jest tests ' + (totalAmountOfTests()- (jestNotRunAmount() ?? 0))">
+	</div>
+	@if(jestNotRunAmount() !== 0) {
+	<div [style.height]="((jestNotRunAmount() ?? 0) / maxAmountOfTests()) * 100 + '%'" class="accessibility"
+		[title]="'Amount of not run jest tests '+ jestNotRunAmount()"></div>
+	}
+</div>
+}
+
+@else {
 
 <div id="chart">
 	@for (dataPoint of testData(); track dataPoint.id) {

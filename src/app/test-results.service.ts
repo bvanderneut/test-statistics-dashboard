@@ -10,6 +10,7 @@ const initialState: DashboardState = {
   productId: undefined,
   totalAmountOfTests: 0,
   maxAmountOfTests: 0,
+  jestNotRunAmount: 0,
   testData: [],
 };
 
@@ -82,11 +83,13 @@ export class TestResultsService {
       id: 1,
       name: 'Car',
       totalAmountOfTests: 10,
+      jestNotRunAmount: 2,
     },
     {
       id: 2,
       name: 'Health',
       totalAmountOfTests: 20,
+      jestNotRunAmount: 4,
     },
     {
       id: 3,
@@ -114,6 +117,7 @@ export class TestResultsService {
   totalAmountOfTests = computed(() => this.state().totalAmountOfTests);
   maxAmountOfTests = computed(() => this.state().maxAmountOfTests);
   testData = computed(() => this.state().testData);
+  jestNotRunAmount = computed(() => this.state().jestNotRunAmount);
   amountOfApiTests = computed(() => {
     const testData = this.state().testData;
     let total = 0;
@@ -234,6 +238,7 @@ export class TestResultsService {
     projectId?: number
   ): PlaywrightTestResults[] {
     const resultData = [];
+
     if (projectId) {
       const tempData = data.find(
         (project) => Number(project.id) === Number(projectId)
@@ -247,6 +252,7 @@ export class TestResultsService {
       var { total, maxValue } = this.calculateAmounts(resultData);
       this.state().totalAmountOfTests = total;
       this.state().maxAmountOfTests = maxValue;
+      this.state().jestNotRunAmount = this.calculateJestTestsNotRun(resultData);
 
       return resultData;
     }
@@ -254,8 +260,20 @@ export class TestResultsService {
     var { total, maxValue } = this.calculateAmounts(data);
     this.state().totalAmountOfTests = total;
     this.state().maxAmountOfTests = maxValue;
+    this.state().jestNotRunAmount = this.calculateJestTestsNotRun(data);
 
     return data;
+  }
+
+  // Calculate the total amount of jest tests that are not run
+  private calculateJestTestsNotRun(data: PlaywrightTestResults[]) {
+    let total = 0;
+
+    data.forEach((element) => {
+      total += element.jestNotRunAmount ?? 0;
+    });
+
+    return total;
   }
 
   // Calculate the total amount of tests and the max amount of tests

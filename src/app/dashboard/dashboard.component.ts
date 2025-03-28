@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TestResultsService } from '../test-results.service';
 import { JsonPipe } from '@angular/common';
 
@@ -15,10 +15,16 @@ export class DashboardComponent {
 
   maxAmountOfTests = this.testResultsService.maxAmountOfTests;
   testData = this.testResultsService.testData;
+  testTypeId = this.testResultsService.testTypeId;
   productId = this.testResultsService.productId;
+  jestNotRunAmount = this.testResultsService.jestNotRunAmount;
   amountOfApiTests = this.testResultsService.amountOfApiTests;
   amountOfAccessibilityTests =
     this.testResultsService.amountOfAccessibilityTests;
   amountOfE2ETests = this.testResultsService.amountOfE2ETests;
   amountOfUiTests = this.testResultsService.amountOfUiTests;
+
+  convertStringToNumber(value: any): number {
+    return Number(value);
+  }
 }
