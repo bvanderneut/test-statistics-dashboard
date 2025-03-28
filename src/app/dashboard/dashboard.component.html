@@ -1,13 +1,33 @@
-@if(totalAmount() !== 0) {
-<p>Total amount</p>
-<p>{{ totalAmount() }}</p>
+@if(totalAmountOfTests() !== 0) {
+<p>Total amount: {{ totalAmountOfTests() }}</p>
+<p>Amount of API: {{ amountOfApiTests() }}</p>
+<p>Amount of accessibility: {{ amountOfAccessibilityTests() }}</p>
+<p>Amount of E2E: {{ amountOfE2ETests() }}</p>
+<p>Amount of UI: {{ amountOfUiTests() }}</p>
+
+@if((productId() ?? 0) > 0) {
+<div id="chart">
+
+	<div [style.height]="(amountOfApiTests() / maxAmountOfTests()) * 100 + '%'" class="api"
+		[title]="'Amount of API tests ' + amountOfApiTests()">
+	</div>
+	<div [style.height]="(amountOfAccessibilityTests() / maxAmountOfTests()) * 100 + '%'" class="accessibility"
+		[title]="'Amount of accessibility tests '+ amountOfAccessibilityTests()"></div>
+	<div [style.height]="(amountOfE2ETests() / maxAmountOfTests()) * 100 + '%'" class="e2e"
+		[title]="'Amount of E2E tests '+ amountOfE2ETests()"></div>
+	<div [style.height]="(amountOfUiTests() / maxAmountOfTests()) * 100 + '%'" class="ui"
+		[title]="'Amount of UI tests '+ amountOfUiTests()"></div>
+
+</div>
+} @else {
 
 <div id="chart">
 	@for (dataPoint of testData(); track dataPoint.id) {
-	<div [style.height]="(dataPoint.testAmount / maxAmountOfTests()) * 100 + '%'"
-		[title]="(dataPoint.name) +' '+ (dataPoint.testAmount)"></div>
+	<div [style.height]="((dataPoint.totalAmountOfTests / maxAmountOfTests()) * 100) + '%'" class="general"
+		[title]="(dataPoint.name) + ' ' + (dataPoint.totalAmountOfTests )"></div>
 	}
 </div>
-
-<!-- <p>{{ testData()| json }}</p> -->
 }
+}
+
+<!-- <p>{{ testData() | json }}</p> -->

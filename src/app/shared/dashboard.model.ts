@@ -11,13 +11,17 @@ export interface Products {
 export interface DashboardState {
   testTypeId: number;
   productId?: number;
-  totalAmount: number;
+  totalAmountOfTests: number;
   maxAmountOfTests: number;
-  testData: TestResults[] | undefined;
+  testData: PlaywrightTestResults[] | undefined;
 }
 
-export interface TestResults {
+export interface PlaywrightTestResults {
   id: number;
   name: string;
-  testAmount: number;
+  totalAmountOfTests: number;
+  amountOfApiTests?: number;
+  amountOfAccessibilityTests?: number;
+  amountOfE2ETests?: number;
+  amountOfUiTests?: number;
 }

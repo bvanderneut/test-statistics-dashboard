@@ -1,5 +1,5 @@
 #chart {
-  height: 10rem;
+  height: 8rem;
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
@@ -10,7 +10,21 @@
 
 #chart div {
   flex: 1;
-  background: linear-gradient(to bottom, #36166f, #ca19a4);
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+.general {
+  background: linear-gradient(to bottom, #36166f, #ca19a4);
+}
+.api {
+  background: linear-gradient(to bottom, red, #e80532);
+}
+.accessibility {
+  background: linear-gradient(to bottom, rgb(38, 174, 4), #08a114);
+}
+.e2e {
+  background: linear-gradient(to bottom, rgb(186, 150, 8), #b89d03);
+}
+.ui {
+  background: linear-gradient(to bottom, rgb(7, 29, 172), #031d9e);
 }
