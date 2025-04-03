@@ -19,8 +19,8 @@
 <p>Amount of UI: {{ amountOfUiTests() }}</p>
 }
 
-<!-- Playwright specific html -->
 @if(convertStringToNumber(testTypeId()) === 1 && ((productId() ?? 0) > 0)) {
+<!-- Playwright specific html -->
 <div id="chart">
 
 	<div [style.height]="(amountOfApiTests() / maxAmountOfTests()) * 100 + '%'" class="api"
@@ -46,9 +46,7 @@
 	}
 </div>
 }
-
 @else {
-
 <div id="chart">
 	@for (dataPoint of testData(); track dataPoint.id) {
 	<div [style.height]="((dataPoint.totalAmountOfTests / maxAmountOfTests()) * 100) + '%'" class="general"

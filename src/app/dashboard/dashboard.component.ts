@@ -7,7 +7,7 @@ import { JsonPipe } from '@angular/common';
   standalone: true,
   imports: [JsonPipe],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   testResultsService = inject(TestResultsService);

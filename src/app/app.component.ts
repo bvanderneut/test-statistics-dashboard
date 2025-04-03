@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, DashboardComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   constructor() {}

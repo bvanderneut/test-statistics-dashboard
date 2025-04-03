@@ -7,7 +7,7 @@ import { Products, TestType } from '../shared/dashboard.model';
   standalone: true,
   imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
   testTypes: TestType[] = [];
