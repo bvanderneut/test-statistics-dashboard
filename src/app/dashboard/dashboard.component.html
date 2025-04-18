@@ -1,28 +1,63 @@
-@if(totalAmountOfTests() !== 0) {
-<p>Total amount of tests: {{ totalAmountOfTests() }}</p>
-<p>Max amount of tests: {{ maxAmountOfTests() }}</p>
 
+
+@if(totalAmountOfTests() !== 0) {
+	<table>
+		<thead>
+			<th>Total amount of tests</th>
+			<th>Max amount of tests</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ totalAmountOfTests() }}</td>
+				<td>{{ maxAmountOfTests() }}</td>
+			</tr>
+		</tbody>
+	</table>
 @if(jestNotRunAmount() !== 0) {
-<p>Jest not run amount: {{ jestNotRunAmount() }}</p>
+	<table>
+		<thead>
+			<th>Jest not run amount</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ jestNotRunAmount() }}</td>
+			</tr>
+		</tbody>
+	</table>
 }
 
+<table>
+	<tbody>
 @if(amountOfApiTests() !== 0) {
-<p>Amount of API: {{ amountOfApiTests() }}</p>
+	<tr>
+		<td class="bold">Amount of API</td>
+		<td>{{ amountOfApiTests() }}</td>
+	</tr>
 }
 @if(amountOfAccessibilityTests() !== 0) {
-<p>Amount of accessibility: {{ amountOfAccessibilityTests() }}</p>
+	<tr>
+		<td class="bold">Amount of accessibility</td>
+		<td>{{ amountOfAccessibilityTests() }}</td>
+	</tr>
 }
 @if(amountOfE2ETests() !== 0) {
-<p>Amount of E2E: {{ amountOfE2ETests() }}</p>
+	<tr>
+		<td class="bold">Amount of E2E</td>
+		<td>{{ amountOfE2ETests() }}</td>
+	</tr>
 }
 @if(amountOfUiTests() !== 0) {
-<p>Amount of UI: {{ amountOfUiTests() }}</p>
+	<tr>
+		<td class="bold">Amount of UI</td>
+		<td>{{ amountOfUiTests() }}</td>
+	</tr>
 }
+	</tbody>
+</table>
 
 @if(convertStringToNumber(testTypeId()) === 1 && ((productId() ?? 0) > 0)) {
 <!-- Playwright specific html -->
 <div id="chart">
-
 	<div [style.height]="(amountOfApiTests() / maxAmountOfTests()) * 100 + '%'" class="api"
 		[title]="'Amount of API tests ' + amountOfApiTests()">
 	</div>
@@ -32,16 +67,15 @@
 		[title]="'Amount of E2E tests '+ amountOfE2ETests()"></div>
 	<div [style.height]="(amountOfUiTests() / maxAmountOfTests()) * 100 + '%'" class="ui"
 		[title]="'Amount of UI tests '+ amountOfUiTests()"></div>
-
 </div>
 } @else if(convertStringToNumber(testTypeId()) === 2 && (productId() ?? 0) > 0) {
 <!-- Jest specif html -->
 <div id="chart">
 	<div [style.height]="((totalAmountOfTests() - (jestNotRunAmount() ?? 0)) / maxAmountOfTests()) * 100 + '%'"
-		class="api" [title]="'Amount of jest tests ' + (totalAmountOfTests()- (jestNotRunAmount() ?? 0))">
+		class="accessibility" [title]="'Amount of jest tests ' + (totalAmountOfTests()- (jestNotRunAmount() ?? 0))">
 	</div>
 	@if(jestNotRunAmount() !== 0) {
-	<div [style.height]="((jestNotRunAmount() ?? 0) / maxAmountOfTests()) * 100 + '%'" class="accessibility"
+	<div [style.height]="((jestNotRunAmount() ?? 0) / maxAmountOfTests()) * 100 + '%'" class="api"
 		[title]="'Amount of not run jest tests '+ jestNotRunAmount()"></div>
 	}
 </div>
